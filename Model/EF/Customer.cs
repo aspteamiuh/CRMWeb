@@ -1,4 +1,4 @@
-namespace CPMWeb.EF
+namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -6,13 +6,14 @@ namespace CPMWeb.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Service")]
-    public partial class Service
+    [Table("Customer")]
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Service()
+        public Customer()
         {
-            OrderItemServices = new HashSet<OrderItemService>();
+            Orders = new HashSet<Order>();
+            Tickets = new HashSet<Ticket>();
         }
 
         public int ID { get; set; }
@@ -21,9 +22,17 @@ namespace CPMWeb.EF
         [StringLength(50)]
         public string Name { get; set; }
 
-        public double Price { get; set; }
+        [Required]
+        [StringLength(11)]
+        public string Phone { get; set; }
+
+        [StringLength(50)]
+        public string Mail { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItemService> OrderItemServices { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

@@ -142,18 +142,6 @@
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\ErrorPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DAO\UserDAO.cs" />
-    <Compile Include="EF\Customer.cs" />
-    <Compile Include="EF\Employee.cs" />
-    <Compile Include="EF\CPM.cs" />
-    <Compile Include="EF\Order.cs" />
-    <Compile Include="EF\OrderItemProduct.cs" />
-    <Compile Include="EF\OrderItemService.cs" />
-    <Compile Include="EF\OrderStatu.cs" />
-    <Compile Include="EF\Product.cs" />
-    <Compile Include="EF\Service.cs" />
-    <Compile Include="EF\Ticket.cs" />
-    <Compile Include="EF\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2033,6 +2021,12 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{71a0b87e-c628-412b-82ee-66b61283731f}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

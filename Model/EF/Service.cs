@@ -1,4 +1,4 @@
-namespace CPMWeb.EF
+namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -6,13 +6,13 @@ namespace CPMWeb.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Product")]
-    public partial class Product
+    [Table("Service")]
+    public partial class Service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public Service()
         {
-            OrderItemProducts = new HashSet<OrderItemProduct>();
+            OrderItemServices = new HashSet<OrderItemService>();
         }
 
         public int ID { get; set; }
@@ -23,9 +23,7 @@ namespace CPMWeb.EF
 
         public double Price { get; set; }
 
-        public int Amount { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItemProduct> OrderItemProducts { get; set; }
+        public virtual ICollection<OrderItemService> OrderItemServices { get; set; }
     }
 }

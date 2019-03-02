@@ -1,4 +1,4 @@
-namespace CPMWeb.EF
+namespace Model.EF
 {
     using System;
     using System.Collections.Generic;
@@ -6,7 +6,8 @@ namespace CPMWeb.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class OrderStatu
+    [Table("OrderItemService")]
+    public partial class OrderItemService
     {
         [Key]
         [Column(Order = 0)]
@@ -15,16 +16,13 @@ namespace CPMWeb.EF
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(10)]
-        public string Status { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int IDService { get; set; }
 
-        public int? IDEmployees { get; set; }
-
-        [StringLength(10)]
-        public string NameEmployes { get; set; }
-
-        public virtual Employee Employee { get; set; }
+        public double Price { get; set; }
 
         public virtual Order Order { get; set; }
+
+        public virtual Service Service { get; set; }
     }
 }
