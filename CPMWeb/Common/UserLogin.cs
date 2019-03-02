@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 
 namespace CPMWeb
-{
+{   
+    [Serializable]
     public class UserLogin
     {
         

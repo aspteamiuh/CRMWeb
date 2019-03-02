@@ -24,7 +24,7 @@ namespace CPMWeb.DAO
         }
         public bool Login (string userName, string passWord)
         {
-            var result = db.Users.Count(x => x.UserName == userName && x.Password == passWord);
+            var result = db.Users.Count(x => x.UserName == userName &&  x.Password == passWord);
             if (result > 0)
             {
                 return true;

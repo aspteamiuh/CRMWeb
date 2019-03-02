@@ -18,8 +18,8 @@ namespace CPMWeb.Areas.Admin.Controllers
         }
         public ActionResult Login(LoginModel model)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 var dao = new UserDAO();
                 var result = dao.Login(model.UserName, model.Password);
                 if (result)
@@ -34,9 +34,10 @@ namespace CPMWeb.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "đăng nhập không đúng");
+                return View();
                 }
-            }
-            return View("Index");
+            //}
+            //return View("Index");
         
         }
     }
