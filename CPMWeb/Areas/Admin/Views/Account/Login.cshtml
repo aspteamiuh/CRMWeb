@@ -1,6 +1,8 @@
 ﻿@model CPMWeb.Areas.Admin.Models.LoginModel
 
-
+@{ 
+    Layout = null;
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,9 +42,9 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Vui lòng đăng nhập!</h1>
                                     </div>
-                                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
                                     {
                                         <fieldset>
                                             <div class="form-group">
@@ -57,7 +59,7 @@
                                                 </label>
                                             </div>
 
-                                            <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                                            <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
                                         </fieldset>
                                     }
                                 </div>
