@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CPMWeb.Areas.Admin.Models;
+using CPMWeb.Common;
+using CPMWeb.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,10 +16,28 @@ namespace CPMWeb.Areas.Admin.Controllers
         {
             return View();
         }
-        public ActionResult Login()
+        public ActionResult Login(LoginModel model)
         {
-
-            return View();
+            if (ModelState.IsValid)
+            {
+                var dao = new UserDAO();
+                var result = dao.Login(model.UserName, model.Password);
+                if (result)
+                {
+                    var user = dao.getByID(model.UserName);
+                    var userSession = new UserLogin();
+                    userSession.UserName = user.UserName;
+                    userSession.UserID = user.ID;
+                    Session.Add(CommonConstants.USER_SESSION, userSession);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "đăng nhập không đúng");
+                }
+            }
+            return View("Index");
+        
         }
     }
 }
