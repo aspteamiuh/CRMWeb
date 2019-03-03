@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CPMWeb.DAO
+namespace Model.DAO
 {
     public class UserDAO
     {
-        CPMDbContext db = null;
+        CPM db = null;
         public UserDAO()
         {
-            db = new CPMDbContext();
+            db = new CPM();
         }
         public long Insert(User entity)
         {

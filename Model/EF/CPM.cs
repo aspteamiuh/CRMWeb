@@ -5,9 +5,9 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class CPMDbContext : DbContext
+    public partial class CPM : DbContext
     {
-        public CPMDbContext()
+        public CPM()
             : base("name=CPM")
         {
         }
@@ -52,6 +52,10 @@ namespace Model.EF
             modelBuilder.Entity<Employee>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Employee>()
+                .Property(e => e.Position)
+                .IsFixedLength();
 
             modelBuilder.Entity<Employee>()
                 .HasMany(e => e.OrderStatus)
@@ -111,6 +115,10 @@ namespace Model.EF
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
+                .Property(e => e.Status)
+                .IsFixedLength();
 
             modelBuilder.Entity<User>()
                 .HasOptional(e => e.Employee)

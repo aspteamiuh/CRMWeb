@@ -23,6 +23,9 @@ namespace Model.EF
         [StringLength(10)]
         public string NameEmployes { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime Date { get; set; }
+
         public virtual Employee Employee { get; set; }
 
         public virtual Order Order { get; set; }

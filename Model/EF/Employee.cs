@@ -25,11 +25,20 @@ namespace Model.EF
         [StringLength(11)]
         public string Phone { get; set; }
 
+        [Required]
         [StringLength(3)]
         public string Gender { get; set; }
 
+        [Required]
         [StringLength(40)]
         public string Email { get; set; }
+
+        [StringLength(50)]
+        public string Address { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string Position { get; set; }
 
         public virtual User User { get; set; }
 

@@ -23,6 +23,9 @@ namespace Model.EF
 
         public double Price { get; set; }
 
+        [StringLength(50)]
+        public string Detail { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderItemService> OrderItemServices { get; set; }
     }

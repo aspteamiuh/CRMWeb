@@ -51,9 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\UserDAO.cs" />
+    <Compile Include="EF\CPM.cs" />
     <Compile Include="EF\Customer.cs" />
     <Compile Include="EF\Employee.cs" />
-    <Compile Include="EF\CPM.cs" />
     <Compile Include="EF\Order.cs" />
     <Compile Include="EF\OrderItemProduct.cs" />
     <Compile Include="EF\OrderItemService.cs" />
