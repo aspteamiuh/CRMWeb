@@ -13,5 +13,21 @@ namespace CPMWeb.Controllers
         {
             return View();
         }
+        public ActionResult Check()
+        {
+            return View();
+        }
+        public ActionResult Ticket()
+        {
+            return View();
+        }
+        public ActionResult About()
+        {
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }
