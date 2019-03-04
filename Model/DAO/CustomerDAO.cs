@@ -24,5 +24,27 @@ namespace Model.DAO
         {
             return db.Customers.OrderByDescending(x=>x.ID).ToPagedList(page,pageSize);
         }
+        public Customer ViewDetail(int ID)
+        {
+            return db.Customers.Find(ID);
+        }
+        public bool Update(Customer entity)
+        {
+            try
+            {
+                var customer = db.Customers.Find(entity.ID);
+                customer.Name = entity.Name;
+                customer.Phone = entity.Phone;
+                customer.Mail = entity.Mail;
+                customer.Address = entity.Address;
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+            
+        }
     }
 }

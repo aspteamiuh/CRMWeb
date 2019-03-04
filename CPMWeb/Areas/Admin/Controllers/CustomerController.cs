@@ -23,6 +23,11 @@ namespace CPMWeb.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult Edit(int id)
+        {
+            var customer = new CustomerDAO().ViewDetail(id);
+            return View(customer);
+        }
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
@@ -37,6 +42,26 @@ namespace CPMWeb.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Thêm Customer thành công");  
+                }
+
+            }
+            return View("Index");
+
+        }
+        [HttpPost]
+        public ActionResult Edit(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new CustomerDAO();
+                var result = dao.Update(customer);
+                if (result)
+                {
+                    return RedirectToAction("Index", "Customer");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Cập nhật Customer thành công");
                 }
 
             }
