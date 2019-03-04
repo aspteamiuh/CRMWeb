@@ -1,0 +1,65 @@
+﻿@model PagedList.IPagedList<Model.EF.Customer>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Quản lý Khách Hàng
+
+}
+<div class="row">
+    <div class="col-lg-12">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Danh Sách Khách Hàng</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable"  cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Mã Khách Hàng</th>
+                                <th>Tên Khách Hàng</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Địa Chỉ Mail</th>
+                                <th>Địa Chỉ</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Mã Khách Hàng</th>
+                                <th>Tên Khách Hàng</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Địa Chỉ Mail</th>
+                                <th>Địa Chỉ</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach(var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    <a href="/Customer/Edit/@item.ID">Sửa</a>
+                                    <a href="/Customer/Delete/@item.ID">Xóa</a>
+                                </td>
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@item.Phone</td>
+                                <td>@item.Mail</td>
+                                <td>@item.Address</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index",new { page }));
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
