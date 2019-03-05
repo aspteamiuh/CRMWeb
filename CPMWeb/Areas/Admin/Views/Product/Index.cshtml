@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<Model.EF.Product>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Quản lý sản phẩm
+
+}
+<div class="row">
+    <div class="col-lg-12">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Chi tiết</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.Name</td>
+                                <td>@item.Detail</td>
+                                <td>@item.Price</td>
+                                <td>@item.Amount</td>
+                                <td>
+                                    <a href="/Customer/Edit/@item.ID">Sửa</a>
+                                    |
+                                    @Ajax.ActionLink("Xoá","Delete",new { @iD = item.ID},new AjaxOptions
+                               {
+                                   Confirm = "Sản phẩm sẽ bị xóa?",
+                                   OnComplete = "('$row_"+item.ID+"').remove()",
+                                   HttpMethod = "Delete"
+                               })
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }));
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
