@@ -20,13 +20,33 @@ namespace Model.DAO
             db.SaveChanges();
             return entity.ID;
         }
-        public IEnumerable<Customer> ListAllPaging(int page,int pageSize)
+        public IEnumerable<Customer> ListAllPaging(string searchString,int page,int pageSize)
         {
-            return db.Customers.OrderByDescending(x=>x.ID).ToPagedList(page,pageSize);
+            IQueryable<Customer> model = db.Customers;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Name.Contains(searchString)); 
+            }           
+            return model.OrderByDescending(x => x.ID).ToPagedList(page,pageSize);
         }
         public Customer ViewDetail(int ID)
         {
             return db.Customers.Find(ID);
+        }
+        public bool Delete(int id)
+        {
+            try
+            {
+                var customer = db.Customers.Find(id);
+                db.Customers.Remove(customer);
+                db.SaveChanges();
+                return true;
+
+            }catch(Exception ex)
+            {
+                return false;
+            }
+            
         }
         public bool Update(Customer entity)
         {

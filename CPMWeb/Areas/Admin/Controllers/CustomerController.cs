@@ -12,10 +12,11 @@ namespace CPMWeb.Areas.Admin.Controllers
     public class CustomerController : Controller
     {
         // GET: Admin/Customer
-        public ActionResult Index(int page=1,int  pageSize = 10)
+        public ActionResult Index(string searchString, int page=1,int  pageSize = 10)
         {
             var dao = new CustomerDAO();
-            var model = dao.ListAllPaging(page, pageSize);
+            var model = dao.ListAllPaging(searchString,page, pageSize);
+            ViewBag.searchString = searchString;
             return View(model);
         }
         [HttpGet]
@@ -67,6 +68,12 @@ namespace CPMWeb.Areas.Admin.Controllers
             }
             return View("Index");
 
+        }
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new CustomerDAO().Delete(id);
+            return RedirectToAction("Index");
         }
     }
 }
