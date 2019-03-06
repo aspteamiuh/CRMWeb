@@ -1,8 +1,10 @@
 ﻿@model PagedList.IPagedList<Model.EF.Product>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 @section header{
@@ -32,23 +34,23 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>@item.ID</td>
-                                <td>@item.Name</td>
-                                <td>@item.Detail</td>
-                                <td>@item.Price</td>
-                                <td>@item.Amount</td>
-                                <td>
-                                    <a href="/Customer/Edit/@item.ID">Sửa</a>
-                                    |
-                                    @Ajax.ActionLink("Xoá","Delete",new { @iD = item.ID},new AjaxOptions
-                               {
-                                   Confirm = "Sản phẩm sẽ bị xóa?",
-                                   OnComplete = "('$row_"+item.ID+"').remove()",
-                                   HttpMethod = "Delete"
-                               })
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>@item.ID</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Detail</td>
+                                    <td>@item.Price</td>
+                                    <td>@item.Amount</td>
+                                    <td>
+                                        <a href="/Customer/Edit/@item.ID">Sửa</a>
+                                        |
+                                        @Ajax.ActionLink("Xoá","Delete",new { @iD = item.ID},new AjaxOptions
+                                   {
+                                       Confirm = "Sản phẩm sẽ bị xóa?",
+                                       OnComplete = "('$row_"+item.ID+"').remove()",
+                                       HttpMethod = "Delete"
+                                   })
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

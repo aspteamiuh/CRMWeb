@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CPMWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,8 +14,11 @@ namespace CPMWeb.Controllers
         {
             return View();
         }
+        [HttpPost]
         public ActionResult Check()
         {
+            var model = new StatusModel();
+            var id = Request.Form["IDOrder"];
             return View();
         }
         public ActionResult Ticket()
