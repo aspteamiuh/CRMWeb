@@ -9,13 +9,13 @@ using PagedList;
 
 namespace CPMWeb.Areas.Admin.Controllers
 {
-    public class CustomerController : BaseController
+    public class ServiceController : Controller
     {
         // GET: Admin/Customer
-        public ActionResult Index(string searchString, int page=1,int  pageSize = 10)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
-            var dao = new CustomerDAO();
-            var model = dao.ListAllPaging(searchString,page, pageSize);
+            var dao = new ServiceDAO();
+            var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.searchString = searchString;
             return View(model);
         }
@@ -26,23 +26,23 @@ namespace CPMWeb.Areas.Admin.Controllers
         }
         public ActionResult Edit(int id)
         {
-            var customer = new CustomerDAO().ViewDetail(id);
-            return View(customer);
+            var service = new ServiceDAO().ViewDetail(id);
+            return View(service);
         }
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(Service service)
         {
             if (ModelState.IsValid)
             {
-                var dao = new CustomerDAO();
-                long id = dao.Insert(customer);
+                var dao = new ServiceDAO();
+                long id = dao.Insert(service);
                 if (id > 0)
                 {
-                    return RedirectToAction("Index", "Customer");
+                    return RedirectToAction("Index", "Service");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm Customer thành công");  
+                    ModelState.AddModelError("", "Thêm Dịch vụ thành công");
                 }
 
             }
@@ -50,19 +50,19 @@ namespace CPMWeb.Areas.Admin.Controllers
 
         }
         [HttpPost]
-        public ActionResult Edit(Customer customer)
+        public ActionResult Edit(Service service)
         {
             if (ModelState.IsValid)
             {
-                var dao = new CustomerDAO();
-                var result = dao.Update(customer);
+                var dao = new ServiceDAO();
+                var result = dao.Update(service);
                 if (result)
                 {
-                    return RedirectToAction("Index", "Customer");
+                    return RedirectToAction("Index", "Service");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật Customer thành công");
+                    ModelState.AddModelError("", "Cập nhật Dịch vụ thành công");
                 }
 
             }
@@ -72,7 +72,7 @@ namespace CPMWeb.Areas.Admin.Controllers
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            new CustomerDAO().Delete(id);
+            new ServiceDAO().Delete(id);
             return RedirectToAction("Index");
         }
     }

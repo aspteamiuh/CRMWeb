@@ -147,6 +147,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ServiceController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\Commonconstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
@@ -1999,6 +2000,9 @@
     <Content Include="Areas\Admin\Views\Customer\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Service\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
