@@ -9,7 +9,7 @@ using PagedList;
 
 namespace CPMWeb.Areas.Admin.Controllers
 {
-    public class CustomerController : BaseController
+    public class CustomerController : Controller
     {
         // GET: Admin/Customer
         public ActionResult Index(string searchString, int page=1,int  pageSize = 10)

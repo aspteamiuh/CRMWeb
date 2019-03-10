@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<Model.EF.User>
+﻿@model PagedList.IPagedList<Model.EF.Employee>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
@@ -6,7 +6,7 @@
 }
 
 @section header{
-    Quản lý Tài Khoản
+    Quản lý Nhân Viên
 
 }
 <div class="row">
@@ -14,10 +14,10 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Danh Sách Tài Khoản</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Danh Sách Nhân Viên</h6>
             </div>
             <div class="card-body">
-                @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                @using (Html.BeginForm("Index", "Employees", FormMethod.Get))
                 {
                     <div class="row">
                         <div class="col-lg-12">
@@ -36,17 +36,25 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>ID</th>
-                                <th>User name</th>
-                                <th>Detail</th>
+                                <th>Mã Nhân Viên</th>
+                                <th>Tên Nhân Viên</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Giới tính</th>
+                                <th>Địa Chỉ Mail</th>
+                                <th>Địa Chỉ</th>
+                                <th>Vị trí</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>ID</th>
-                                <th>User name</th>
-                                <th>Detail</th>
+                                <th>Mã Nhân Viên</th>
+                                <th>Tên Nhân Viên</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Giới tinh</th>
+                                <th>Địa Chỉ Mail</th>
+                                <th>Địa Chỉ</th>
+                                <th>Vị trí</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -54,19 +62,22 @@
                             {
                                 <tr id="row_@item.ID">
                                     <td>
-                                        <a href="/Admin/User/Edit/@item.ID">Sửa</a>
+                                        <a href="/Admin/Employees/Edit/@item.ID">Sửa</a>
                                         |
-                                        @Ajax.ActionLink("Xóa", "Delete",new {@id = item.ID}, new AjaxOptions
-                                    {
-                                        Confirm = "Bạn có muốn xóa?",
-                                        OnComplete= "$('#row_"+@item.ID+"').remove()",
-                                        HttpMethod = "Delete"
-                                    })
+                                        @Ajax.ActionLink("Xóa", "Delete",new {@id = item.ID }, new AjaxOptions
+                                   {
+                                       Confirm = "Bạn có muốn xóa?",
+                                       OnComplete= "$('#row_"+@item.ID+"').remove()",
+                                       HttpMethod = "Delete"
+                                   })
                                     </td>
                                     <td>@item.ID</td>
-                                    <td>@item.UserName</td>
-                                    <td>@item.Status</td>
-
+                                    <td>@item.Name</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.Gender</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Address</td>
+                                    <td>@item.Position</td>
                                 </tr>
                             }
                         </tbody>

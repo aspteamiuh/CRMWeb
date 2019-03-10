@@ -6,15 +6,15 @@ using System.Web.Mvc;
 using Model.EF;
 using Model.DAO;
 using PagedList;
-using CPMWeb.Common;
 
 namespace CPMWeb.Areas.Admin.Controllers
 {
-    public class UserController : Controller
+    public class EmployeesController : Controller
     {
+        // GET: Admin/Customer
         public ActionResult Index(string searchString, int page = 1, int pageSize = 10)
         {
-            var dao = new UserDAO();
+            var dao = new EmployeeDAO();
             var model = dao.ListAllPaging(searchString, page, pageSize);
             ViewBag.searchString = searchString;
             return View(model);
@@ -26,29 +26,23 @@ namespace CPMWeb.Areas.Admin.Controllers
         }
         public ActionResult Edit(int id)
         {
-            var service = new UserDAO().ViewDetail(id);
-            return View(service);
+            var employee = new EmployeeDAO().ViewDetail(id);
+            return View(employee);
         }
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create(Employee employee)
         {
             if (ModelState.IsValid)
             {
-                var dao = new UserDAO();
-                if (!string.IsNullOrEmpty(user.Password))
-                {
-                    var encryptedMd5Pas = Encryptor.MD5Hash(user.Password);
-                    user.Password = encryptedMd5Pas;
-                }
-               
-                long id = dao.Insert(user);
+                var dao = new EmployeeDAO();
+                long id = dao.Insert(employee);
                 if (id > 0)
                 {
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Employees");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm User thành công");
+                    ModelState.AddModelError("", "Thêm Employee thành công");
                 }
 
             }
@@ -56,24 +50,19 @@ namespace CPMWeb.Areas.Admin.Controllers
 
         }
         [HttpPost]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(Employee employee)
         {
             if (ModelState.IsValid)
             {
-                var dao = new UserDAO();
-                if (!string.IsNullOrEmpty(user.Password))
-                {
-                    var encryptedMd5Pas = Encryptor.MD5Hash(user.Password);
-                    user.Password = encryptedMd5Pas;
-                }
-                var result = dao.Update(user);
+                var dao = new EmployeeDAO();
+                var result = dao.Update(employee);
                 if (result)
                 {
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Employees");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật Dịch vụ thành công");
+                    ModelState.AddModelError("", "Cập nhật Employee thành công");
                 }
 
             }
@@ -83,7 +72,7 @@ namespace CPMWeb.Areas.Admin.Controllers
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            new ServiceDAO().Delete(id);
+            new EmployeeDAO().Delete(id);
             return RedirectToAction("Index");
         }
     }
