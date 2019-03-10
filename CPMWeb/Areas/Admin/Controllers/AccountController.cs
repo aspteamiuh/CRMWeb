@@ -52,5 +52,6 @@ namespace CPMWeb.Areas.Admin.Controllers
             Session.Remove(CommonConstants.USER_SESSION);
             return RedirectToAction("Login", "Account");
         }
+
     }
 }
