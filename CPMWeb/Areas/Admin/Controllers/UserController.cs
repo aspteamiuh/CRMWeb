@@ -26,8 +26,8 @@ namespace CPMWeb.Areas.Admin.Controllers
         }
         public ActionResult Edit(int id)
         {
-            var service = new UserDAO().ViewDetail(id);
-            return View(service);
+            var user = new UserDAO().ViewDetail(id);
+            return View(user);
         }
         [HttpPost]
         public ActionResult Create(User user)
@@ -73,7 +73,7 @@ namespace CPMWeb.Areas.Admin.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật Dịch vụ thành công");
+                    ModelState.AddModelError("", "Cập nhật User thành công");
                 }
 
             }
@@ -83,7 +83,7 @@ namespace CPMWeb.Areas.Admin.Controllers
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            new ServiceDAO().Delete(id);
+            new UserDAO().Delete(id);
             return RedirectToAction("Index");
         }
     }

@@ -29,9 +29,9 @@ namespace Model.DAO
             }
             return model.OrderByDescending(x => x.ID).ToPagedList(page, pageSize);
         }
-        public Customer ViewDetail(int ID)
+        public Service ViewDetail(int ID)
         {
-            return db.Customers.Find(ID);
+            return db.Services.Find(ID);
         }
         public bool Delete(int id)
         {
